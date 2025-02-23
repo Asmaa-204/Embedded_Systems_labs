@@ -3,12 +3,12 @@
 
 volatile uint8_t overflow = 0;
 
-ISR(TIMER2_OVF_vec) {
+ISR(TIMER2_OVF_vect) {
   overflow++;
 }
 
 void timer2_init() { 
-  TCCR2B = (1 << CS22) | (1 << CS21) | (1 << CS20);
+  TCCR2B |= (1 << CS22) | (1 << CS21) | (1 << CS20);
   TCNT2 = 0; 
   TIMSK2 = (1 << TOIE2);
   sei();
