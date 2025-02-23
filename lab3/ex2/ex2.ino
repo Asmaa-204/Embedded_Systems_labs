@@ -17,8 +17,8 @@ void timer0_init() {
 }
 
 void setup() {
-  DDRD = 0xFF;
-  PORTD = 0;
+  DDRC = 0xFF;
+  PORTC = segment_codes[0];
   timer0_init();
 }
 
@@ -28,7 +28,7 @@ void loop() {
       TCNT0 = 0;
       overflow = 0;
       digit = (digit + 1) % 10;
-      PORTD = segment_codes[digit];
+      PORTC = segment_codes[digit];
     }
   }
 }
