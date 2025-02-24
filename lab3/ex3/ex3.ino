@@ -12,6 +12,7 @@ void timer2_init() {
   TCCR1B |= (1 << WGM12);
   TIMSK2 = (1 << OCIE2A);
   OCR2A = 255;
+  TCNT2 = 0; 
   sei();
 }
 
@@ -23,7 +24,10 @@ void setup() {
 
 void loop() {
   if(overflow >= 30) {
-    PORTC ^= (1 << PC0);
-    overflow = 0;
+    if(TCNT2 >= 132) {
+      PORTC ^= (1 << PC0);
+      overflow = 0;
+      TCNT2 = 0;
+    }
   }
 }
