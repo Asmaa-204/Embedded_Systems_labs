@@ -2,6 +2,7 @@
 #include <Arduino.h>
 #include <util/delay.h>
 
+//not working
 
 unsigned int t;
 
@@ -19,7 +20,7 @@ void setup(){
 
 
 void loop(){
-    
+
     while((TIFR & (1 << ICF1)) == 0);
 
     t = ICR1;
