@@ -27,8 +27,6 @@ ISR(ADC_vect) {
 }
 
 void setup() {
-    // Set AREF = VCC (AVCC)
-    // 0100 0000 = 0x40
     ADMUX = (1 << REFS0);
 
     ADCSRA = (1 << ADEN) | (1 << ADIE) | (1 << ADPS2) | (1 << ADPS1) | (1 << ADPS0);
@@ -51,11 +49,8 @@ void loop() {
     interrupts();
     
     // Print values
-    Serial.print("X-axis = ");
-    Serial.print(x);
-    Serial.print("\t");
-    Serial.print("Y-axis = ");
-    Serial.println(y);
+    Serial.println(x);
+
     
     delay(100);  // Control display rate
 }
