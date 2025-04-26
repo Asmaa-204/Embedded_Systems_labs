@@ -7,7 +7,8 @@ volatile uint8_t digit = 0;
 uint8_t segment_codes[10] = {0x3F, 0x06, 0x5B, 0x4F, 0x66, 0x6D, 0x7D, 0x07, 0x7F, 0x6F};
 
 void timer2_init() { 
-  TCCR2B |= (1 << CS22) | (1 << CS21) | (1 << CS20);
+  // 256 prescalar for timer 2
+  TCCR2B |= (1 << CS22) | (1 << CS21);
   TCNT2 = 0; 
   TIMSK2 |= (1 << TOIE2);
   sei();
@@ -23,12 +24,12 @@ int main () {
   timer2_init();
 
   while(true) {
-    if(overflow >= 30) {
-      if(TCNT2 >= 132) {
-        digit = (digit + 1) % 10;
+    if(overflow >= 244) {
+      if(TCNT2 >= 35) {
         PORTD = segment_codes[digit];
         TCNT2 = 0;
         overflow = 0;
+        digit = (digit + 1) % 10;
       }
     }
   }
