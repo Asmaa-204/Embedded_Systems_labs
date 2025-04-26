@@ -4,6 +4,7 @@
 volatile uint8_t overflow = 0;
 volatile uint8_t digit = 0;
 
+// for common cathode
 uint8_t segment_codes[10] = {0x3F, 0x06, 0x5B, 0x4F, 0x66, 0x6D, 0x7D, 0x07, 0x7F, 0x6F};
 
 void timer2_init() { 
