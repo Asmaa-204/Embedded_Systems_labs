@@ -52,12 +52,14 @@ int main(void) {
     while (1) {
         // Reset i to 1 after reaching 100
         if (i > 100) {
-            i = 1; 
+          i = 1; 
         }
-        spi_write(i++); // Send data to the slave
-        _delay_ms(10); // Wait for a second
+        spi_write(i); // Send data to the slave
+        _delay_ms(10);
         uint8_t received_data = spi_read(); // Read data from the slave
-        Serial.println(received_data); // Print received data to the serial monitor
+        Serial.print(received_data); // Print received data to the serial monitor'
+        Serial.print(" ");
+        Serial.println(i++);
         _delay_ms(300);
     }
 }

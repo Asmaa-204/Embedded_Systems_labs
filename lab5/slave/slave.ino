@@ -48,10 +48,13 @@ int main(void) {
     while (1) {
         //read from master
         received_data = spi_read();
-        Serial.println(received_data);
 
         //write to master
-        received_data += 100; // Increment the received data
+        received_data += 10; // Increment the received data
         spi_write(received_data); // Send data back to the master
+
+        Serial.print(received_data - 10);
+        Serial.print(" ");
+        Serial.println(received_data);
     }
 }
